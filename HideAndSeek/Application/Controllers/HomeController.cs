@@ -15,18 +15,13 @@ namespace Application.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "/")]
-        public void Get()
-        {
-            Console.WriteLine("get works");
-        }
-
-        [HttpPost(Name = "/upload")]
-        public void Post(string binary)
+        [HttpPost]
+        public void Post(/*[FromBody]string? binary*/)
         {
             Console.WriteLine("entered post");
-            var file = binary;
             Console.WriteLine("sofar");
         }
+
+       
     }
 }
