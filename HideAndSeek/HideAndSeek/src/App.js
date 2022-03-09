@@ -26,23 +26,26 @@ export default function App() {
         const formData = new FormData();
         const url = "http://localhost:5000/Home"
 
+
 		formData.append('File', selectedFile);
-        console.log(formData)
+        const data = { binary: "1001",
+                       FileToEncrypt: formData}
 
 		const response = await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             //mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
+            //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            //credentials: 'same-origin', // include, *same-origin, omit
             headers: {
-              'Content-Type': 'application/json',
-              "Accept": "application/json"
-              // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
+                'Content-Type': 'application/json',
+            //    "Accept": "application/json"
+             },
             //redirect: 'follow', // manual, *follow, error
             //referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify({binary:"1001"}) // body data type must match "Content-Type" header
+            body: data // body data type must match "Content-Type" header
           });
+          console.log(response);
+
           return response.json(); // parses JSON response into native JavaScript objects
         };
 
@@ -65,14 +68,14 @@ export default function App() {
                             ) : (
                                 <p>Select a file to show details</p>
                                 )}
-                
+
                 <input type="text" name="key" value={key} onChange={validateKey} />
 
 
                 <div>
                     <button onClick={handleSubmission}>Submit</button>
                 </div>
-                
+
             </div>
         );
 }

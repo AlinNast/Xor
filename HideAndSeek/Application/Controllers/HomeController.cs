@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Application.Models;
 
 namespace Application.Controllers
 {
-    [ApiController]
+   // [ApiController]
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
@@ -16,12 +17,15 @@ namespace Application.Controllers
         }
 
         [HttpPost]
-        public void Post(/*[FromBody]string? binary*/)
+        public IActionResult Post([FromForm]RecievedFile x)
         {
-            Console.WriteLine("entered post");
-            Console.WriteLine("sofar");
+            var bin = x;
+            return 
+            
         }
 
        
     }
+
+    
 }

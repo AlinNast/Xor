@@ -208,24 +208,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alin\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\zucke\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alin\\Documents\\Codecool\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\zucke\\Documents\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\Alin\\Documents\\Codecool\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\Alin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alin\\Documents\\Codecool\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\obj\\",
+      "projectPath": "C:\\Users\\zucke\\Documents\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\zucke\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zucke\\Documents\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Alin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\zucke\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -274,7 +269,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
