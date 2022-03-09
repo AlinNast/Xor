@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Application.Models;
+using System.IO;
+using Application;
 
 namespace Application.Controllers
 {
@@ -17,12 +19,31 @@ namespace Application.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromForm]RecievedFile x)
+        public IActionResult Post([FromForm]RecievedFile recievedFile)
         {
-            var bin = x;
-            return Ok(bin);
+            var key = recievedFile.EncryptionKey;
+            if (!Tools.IsKeyValid(key))
+            {
+                return BadRequest(new { message = "Key is not valid" });
+            }
+
+            var fileToEncrypt = recievedFile.FileToEncrypt;
+            if (fileToEncrypt.Length == 0)
+            {
+                return BadRequest(new { message = "your file is empty" });
+            }
+            if (fileToEncrypt == null)
+            {
+                return BadRequest(new { message = "no file uploaded" });
+            }
+
+            Tools.ProcesFile(fileToEncrypt, key);
+
+            return Ok();
             
         }
+
+        
 
        
     }

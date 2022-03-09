@@ -2,7 +2,7 @@
 {
     public class RecievedFile
     {
-        public string Binary { get; set; }
+        public string EncryptionKey { get; set; }
 
         public IFormFile FileToEncrypt { get; set; }
     }

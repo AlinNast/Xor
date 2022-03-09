@@ -5,54 +5,54 @@ export default function App() {
     const [selectedFile, setSelectedFile] = useState();
 	const [IsSelected, setIsSelected] = useState(false);
     const [key, setKey] = useState()
+    const [isKeyValid, setIsKeyValid] = useState(false);
 
     const changeHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
-        console.log(event.target.files[0].name);
 		setIsSelected(true);
 	};
 
-    const validateKey = (e) => {
-        console.log(e.target.value)
-        if (! /^[a-fA-F0-9]+$/.test(e.target.value)) {
-            setKey(e.target.value)
+    const keyHandler = (e) => {
+        setKey(e.target.value)
+        setIsKeyValid(true);
+
+        if(key.length == 0){
+            setIsKeyValid(false);
         }
-        else{
-            alert("the key you entered is not HEXDEC, try again")
+        for (let i = 0; i < key.length; i++) {
+            if(!"1234567890abcdefABCDEF".includes(key[i])){
+                setIsKeyValid(false);
+            }
         }
+        console.log(key);
+
     }
 
 	const handleSubmission = async () => {
         const formData = new FormData();
-        const url = "http://localhost:5000/Home"
+        const url = "http://localhost:5000/Home";
 
 
-		formData.append('File', selectedFile);
-        const data = { binary: "1001",
-                       FileToEncrypt: formData}
+		formData.append('FileToEncrypt', selectedFile);
+        formData.append('EncryptionKey', key);
+        
 
 		const response = await fetch(url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            //mode: 'cors', // no-cors, *cors, same-origin
-            //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            //credentials: 'same-origin', // include, *same-origin, omit
-            headers: {
-                'Content-Type': 'application/json',
-            //    "Accept": "application/json"
-             },
-            //redirect: 'follow', // manual, *follow, error
-            //referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: data // body data type must match "Content-Type" header
+            method: 'POST', 
+            
+            //headers: { },
+            "Access-Control-Allow-Origin" : "*", 
+            "Access-Control-Allow-Credentials" : true,
+            body: formData // body data type must match "Content-Type" header
           });
-          console.log(response);
 
-          return response.json(); // parses JSON response into native JavaScript objects
+          return await response.json(); // parses JSON response into native JavaScript objects
         };
 
         return (
             <div>
                 <h1 >XOR Cipher</h1>
-                <input type="file" name="file" onChange={changeHandler} />
+                <input type="file" name="file" onChange={ changeHandler} />
 
                 {/* conditional display logic */}
                 {IsSelected ? (
@@ -69,7 +69,18 @@ export default function App() {
                                 <p>Select a file to show details</p>
                                 )}
 
-                <input type="text" name="key" value={key} onChange={validateKey} />
+                <input type="text" name="key" value={key} onChange={keyHandler} />
+                {isKeyValid ? (
+                            <div>
+                            <p style={{color: "green"}}>Key is ok</p>
+                            </div>
+                            ):(
+                                <div>
+                                <p style={{color: "red"}}>
+                                    The key should be made from characters from 0 to 9 and "a" to "f".
+                                </p>
+                                </div>
+                            )}
 
 
                 <div>
