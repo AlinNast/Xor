@@ -20,7 +20,7 @@ namespace Application.Controllers
         public IActionResult Post([FromForm]RecievedFile x)
         {
             var bin = x;
-            return 
+            return Ok(bin);
             
         }
 
