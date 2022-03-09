@@ -37,7 +37,9 @@ namespace Application.Controllers
                 return BadRequest(new { message = "no file uploaded" });
             }
 
-            Tools.ProcesFile(fileToEncrypt, key);
+            var operationType = recievedFile.OperationType;
+
+            Tools.ProcesFile(fileToEncrypt, key, operationType);
 
             return Ok();
             

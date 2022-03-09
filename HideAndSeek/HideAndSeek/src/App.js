@@ -4,8 +4,17 @@ import { useState } from 'react';
 export default function App() {
     const [selectedFile, setSelectedFile] = useState();
 	const [IsSelected, setIsSelected] = useState(false);
+
     const [key, setKey] = useState()
     const [isKeyValid, setIsKeyValid] = useState(false);
+
+    const [operationType, setOperationType] = useState();
+    
+
+    const operationHandler = (e) => {
+        setOperationType(e.target.value);
+        console.log(operationType);
+    }
 
     const changeHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
@@ -35,6 +44,7 @@ export default function App() {
 
 		formData.append('FileToEncrypt', selectedFile);
         formData.append('EncryptionKey', key);
+        formData.append('OperationType', operationType)
         
 
 		const response = await fetch(url, {
@@ -81,6 +91,13 @@ export default function App() {
                                 </p>
                                 </div>
                             )}
+                
+                <p>Select operation type:</p>
+                <div onChange={operationHandler}>
+                <input type="radio" value="Encrypt" name="operation" /> Encrypt
+                <input type="radio" value="Decrypt" name="operation" /> Decrypt
+                </div>
+                
 
 
                 <div>

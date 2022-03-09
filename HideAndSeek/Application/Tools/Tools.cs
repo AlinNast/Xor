@@ -34,7 +34,7 @@ namespace Application
             return xor;
         }
 
-        public static void ProcesFile(IFormFile fileToEncrypt, string key)
+        public static void ProcesFile(IFormFile fileToEncrypt, string key, string operationType)
         {
             using var fileStream = fileToEncrypt.OpenReadStream();
             byte[] bytes = new byte[fileToEncrypt.Length];
@@ -43,9 +43,30 @@ namespace Application
             string binaryKey = StringToBinary(key);
             string binaryFile = FileToBinary(fileToEncrypt);
 
-            byte[] encryptedBytes = XORCipher(bytes,binaryKey);
-            System.IO.File.WriteAllBytes("Foood.enc", encryptedBytes); // Requires System.IO
+            string fileName = fileToEncrypt.FileName;
+            string newFileName = ChangeFileName(fileName, operationType);
 
+            byte[] encryptedBytes = XORCipher(bytes,binaryKey);
+            System.IO.File.WriteAllBytes(newFileName, encryptedBytes); // Requires System.IO
+
+        }
+
+        private static string ChangeFileName(string fileName, string operationType)
+        {
+            if(operationType == "Encrypt")
+            {
+                return fileName += ".enc";
+            }
+            else
+            {
+                if (fileName.EndsWith(".enc") && fileName.Substring(0, fileName.Length - 4).Contains("."))
+                {
+                    return fileName += ".dec";
+                }
+            }
+
+
+            return "";
         }
 
         private static string FileToBinary(IFormFile fileToEncrypt)
