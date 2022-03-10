@@ -77,15 +77,6 @@ namespace Application
             return StringToBinary(bytes.ToString());
         }
 
-        private static byte[] BinaryToFile(string encryptedBinary)
-        {
-            int numOfBytes = encryptedBinary.Length / 8;
-            byte[] bytes = new byte[numOfBytes];
-            for (int i = 0; i < numOfBytes; ++i)
-            {
-                bytes[i] = Convert.ToByte(encryptedBinary.Substring(8 * i, 8), 2);
-            }
-            return bytes;
-        }
+        
     }
 }

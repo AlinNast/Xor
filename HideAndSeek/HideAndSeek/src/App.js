@@ -43,7 +43,6 @@ export default function App() {
 		const response = await fetch(url, {
             method: 'POST', 
             
-            //headers: { },
             "Access-Control-Allow-Origin" : "*", 
             "Access-Control-Allow-Credentials" : true,
             body: formData // body data type must match "Content-Type" header
@@ -54,7 +53,7 @@ export default function App() {
               setIsFileUploaded(true);
           }
 
-          return await response.json(); // parses JSON response into native JavaScript objects
+          return await response.json();
         };
 
         return (
@@ -62,7 +61,6 @@ export default function App() {
                 <h1 >XOR Cipher</h1>
                 <input type="file" name="file" onChange={ changeHandler} />
 
-                {/* conditional display logic */}
                 {isSelected ? (
                                 <div>
                                     <p>Filename: {selectedFile.name}</p>
@@ -117,7 +115,12 @@ export default function App() {
                 )}
 
 
-                {(isFileUploaded) ? (<button onClick={handleDownload}>Download</button>
+                {(isFileUploaded) ? (
+                    <div>
+                            <p style={{color: "green"}}>Your operation was succesfull</p>
+                            
+                    <button onClick={handleDownload}>Download</button>
+                    </div>
                 ) : (<p></p>)}
                     
             </div>
