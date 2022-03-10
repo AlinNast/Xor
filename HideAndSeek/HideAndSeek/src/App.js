@@ -3,38 +3,30 @@ import { useState } from 'react';
 
 export default function App() {
     const [selectedFile, setSelectedFile] = useState();
-	const [IsSelected, setIsSelected] = useState(false);
+	const [isSelected, setIsSelected] = useState(false);
 
-    const [key, setKey] = useState()
-    const [isKeyValid, setIsKeyValid] = useState(false);
+    const [key, setKey] = useState("")
 
-    const [operationType, setOperationType] = useState();
+    const [operationType, setOperationType] = useState(null);
+
+    const [isCRCChecked, setIsCRCChecked] = useState(false);
+
+    const [isFileUploaded, setIsFileUploaded] = useState(false);
+
     
-
-    const operationHandler = (e) => {
-        setOperationType(e.target.value);
-        console.log(operationType);
-    }
 
     const changeHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
 		setIsSelected(true);
 	};
 
-    const keyHandler = (e) => {
-        setKey(e.target.value)
-        setIsKeyValid(true);
+    const isHex = (inputKey) => {
+        var a = parseInt(inputKey,16);
+        return (a.toString(16) === inputKey)
+    }
 
-        if(key.length == 0){
-            setIsKeyValid(false);
-        }
-        for (let i = 0; i < key.length; i++) {
-            if(!"1234567890abcdefABCDEF".includes(key[i])){
-                setIsKeyValid(false);
-            }
-        }
-        console.log(key);
-
+    const handleDownload = () =>{
+        window.open('http://localhost:5000/Home', '_blank');
     }
 
 	const handleSubmission = async () => {
@@ -44,7 +36,8 @@ export default function App() {
 
 		formData.append('FileToEncrypt', selectedFile);
         formData.append('EncryptionKey', key);
-        formData.append('OperationType', operationType)
+        formData.append('OperationType', operationType);
+        formData.append('isCRCChecked', isCRCChecked);
         
 
 		const response = await fetch(url, {
@@ -55,17 +48,22 @@ export default function App() {
             "Access-Control-Allow-Credentials" : true,
             body: formData // body data type must match "Content-Type" header
           });
+          console.log(response)
+
+          if(response.ok){
+              setIsFileUploaded(true);
+          }
 
           return await response.json(); // parses JSON response into native JavaScript objects
         };
 
         return (
-            <div>
+            <div className="container">
                 <h1 >XOR Cipher</h1>
                 <input type="file" name="file" onChange={ changeHandler} />
 
                 {/* conditional display logic */}
-                {IsSelected ? (
+                {isSelected ? (
                                 <div>
                                     <p>Filename: {selectedFile.name}</p>
                                     <p>Filetype: {selectedFile.type}</p>
@@ -79,8 +77,8 @@ export default function App() {
                                 <p>Select a file to show details</p>
                                 )}
 
-                <input type="text" name="key" value={key} onChange={keyHandler} />
-                {isKeyValid ? (
+                <input type="text" name="key" value={key} onChange={(e) => {setKey(e.target.value)}} />
+                {((key.length != 0) && isHex(key)) ? (
                             <div>
                             <p style={{color: "green"}}>Key is ok</p>
                             </div>
@@ -93,17 +91,35 @@ export default function App() {
                             )}
                 
                 <p>Select operation type:</p>
-                <div onChange={operationHandler}>
+                <div onChange={ (e) => {setOperationType(e.target.value)}}>
                 <input type="radio" value="Encrypt" name="operation" /> Encrypt
                 <input type="radio" value="Decrypt" name="operation" /> Decrypt
                 </div>
                 
 
+                {operationType=="Decrypt" ? (
+                    <div>
+                    <input type="checkbox" checked={isCRCChecked} name="CRC" onChange={() => {setIsCRCChecked(!isCRCChecked)}} /> Add CRC (optional)
+                    </div>
+                ) : (<p></p>)}
+                
+                
 
-                <div>
+                {(isSelected&&((key.length != 0) && isHex(key))&&(operationType != null)) ? (
+                    <div>
                     <button onClick={handleSubmission}>Submit</button>
-                </div>
+                    </div>
+                ) : (
+                    <div>
+                    <p>All fields are mandadory</p>
+                    <button disabled>Submit</button>
+                    </div>
+                )}
 
+
+                {(isFileUploaded) ? (<button onClick={handleDownload}>Download</button>
+                ) : (<p></p>)}
+                    
             </div>
         );
 }

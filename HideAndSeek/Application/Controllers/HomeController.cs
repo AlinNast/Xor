@@ -9,13 +9,15 @@ namespace Application.Controllers
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
-        
+
+        private readonly string _filePath;
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, string filePath)
         {
             _logger = logger;
+            _filePath = filePath;
         }
 
         [HttpPost]
@@ -39,11 +41,21 @@ namespace Application.Controllers
 
             var operationType = recievedFile.OperationType;
 
+            var isCRC = recievedFile.isCRCChecked;
+
             Tools.ProcesFile(fileToEncrypt, key, operationType);
 
             return Ok();
             
         }
+
+        [HttpGet]
+        public FileContentResult DownloadFile()
+        {
+            return File(System.IO.File.ReadAllBytes($"{_filePath}/{Tools.FileName}"), "application/octet-stream", Tools.FileName);
+            
+        }
+
 
         
 

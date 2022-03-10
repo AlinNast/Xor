@@ -1,11 +1,54 @@
 {
   "Version": 1,
-  "Hash": "Ee4K7z+QMe0erAzf/Epl3d7uS+cp6yJzWSmXR2jB4Cs=",
+  "Hash": "eY1bEwqIA+UiBVMtpBK1G8iMpu0skeBT6Dm1GS4jmYU=",
   "Source": "Application",
   "BasePath": "_content/Application",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "Application\\wwwroot",
+      "Source": "Application",
+      "ContentRoot": "C:\\Users\\zucke\\Documents\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\wwwroot\\",
+      "BasePath": "_content/Application",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\zucke\\Documents\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\wwwroot\\Files\\ENcrypt this.txt.enc",
+      "SourceId": "Application",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\zucke\\Documents\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\wwwroot\\",
+      "BasePath": "_content/Application",
+      "RelativePath": "Files/ENcrypt this.txt.enc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\ENcrypt this.txt.enc"
+    },
+    {
+      "Identity": "C:\\Users\\zucke\\Documents\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\wwwroot\\Files\\encrypt.txt.enc",
+      "SourceId": "Application",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\zucke\\Documents\\Advanced\\HideAndSeek\\HideAndSeek\\Application\\wwwroot\\",
+      "BasePath": "_content/Application",
+      "RelativePath": "Files/encrypt.txt.enc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\encrypt.txt.enc"
+    }
+  ]
 }

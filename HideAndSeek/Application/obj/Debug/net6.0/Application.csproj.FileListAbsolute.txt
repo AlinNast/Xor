@@ -52,3 +52,4 @@ C:\Users\zucke\Documents\Advanced\HideAndSeek\HideAndSeek\Application\obj\Debug\
 C:\Users\zucke\Documents\Advanced\HideAndSeek\HideAndSeek\Application\obj\Debug\net6.0\ref\Application.dll
 C:\Users\zucke\Documents\Advanced\HideAndSeek\HideAndSeek\Application\obj\Debug\net6.0\Application.pdb
 C:\Users\zucke\Documents\Advanced\HideAndSeek\HideAndSeek\Application\obj\Debug\net6.0\Application.genruntimeconfig.cache
+C:\Users\zucke\Documents\Advanced\HideAndSeek\HideAndSeek\Application\bin\Debug\net6.0\Application.staticwebassets.runtime.json

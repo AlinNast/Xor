@@ -4,6 +4,7 @@ namespace Application
 {
     public class Tools
     {
+        public static string FileName { get; set; }
         private static string StringToBinary(string key)
         {
             StringBuilder binaryKey = new StringBuilder();
@@ -45,28 +46,27 @@ namespace Application
 
             string fileName = fileToEncrypt.FileName;
             string newFileName = ChangeFileName(fileName, operationType);
+            FileName = newFileName;
 
             byte[] encryptedBytes = XORCipher(bytes,binaryKey);
-            System.IO.File.WriteAllBytes(newFileName, encryptedBytes); // Requires System.IO
+            System.IO.File.WriteAllBytes("./wwwroot/Files/"+newFileName, encryptedBytes); // Requires System.IO
 
         }
 
-        private static string ChangeFileName(string fileName, string operationType)
+        public static string ChangeFileName(string fileName, string operationType)
         {
             if(operationType == "Encrypt")
             {
                 return fileName += ".enc";
             }
-            else
-            {
-                if (fileName.EndsWith(".enc") && fileName.Substring(0, fileName.Length - 4).Contains("."))
-                {
-                    return fileName += ".dec";
-                }
+            else if (fileName.EndsWith(".enc") && fileName.Substring(0, fileName.Length - 4).Contains("."))
+            { 
+
+                return fileName.Substring(0, fileName.Length - 4);
             }
 
 
-            return "";
+            return fileName += ".dec";
         }
 
         private static string FileToBinary(IFormFile fileToEncrypt)
