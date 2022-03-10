@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "1637ab20-9fc5-4424-a52a-b1dba085757a": {
+      "ProjectGuid": "1637ab20-9fc5-4424-a52a-b1dba085757a",
+      "DisplayName": "Application",
+      "ColorIndex": 0
+    },
+    "f982f81c-18a6-4ef5-a851-8aa09e88775b": {
+      "ProjectGuid": "f982f81c-18a6-4ef5-a851-8aa09e88775b",
+      "DisplayName": "HideAndSeek",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}
